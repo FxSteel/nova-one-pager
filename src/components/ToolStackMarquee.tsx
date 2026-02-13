@@ -31,7 +31,7 @@ export function ToolStackMarquee() {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const duplicatedTools = [...TOOLS, ...TOOLS, ...TOOLS, ...TOOLS];
+  const duplicatedTools = [...TOOLS, ...TOOLS];
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-b border-zinc-200 dark:border-zinc-800 mt-8">
@@ -68,23 +68,29 @@ export function ToolStackMarquee() {
           </div>
         ) : (
           // Marquee infinito con animación CSS
-          <div className="mb-8 overflow-hidden">
+          <div className="mb-8 overflow-hidden relative">
             <style>{`
               @keyframes marquee {
                 0% {
                   transform: translateX(0);
                 }
                 100% {
-                  transform: translateX(calc(-25% - 2.5px));
+                  transform: translateX(-50%);
                 }
               }
 
               .marquee-track {
-                animation: marquee 45s linear infinite;
+                animation: marquee 15s linear infinite;
+                width: max-content;
+              }
+
+              .marquee-container {
+                mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
               }
             `}</style>
-            <div className="marquee-container">
-              <div className="marquee-track flex gap-10">
+            <div className="marquee-container overflow-hidden max-w-md md:max-w-2xl mx-auto">
+              <div className="marquee-track flex gap-10 whitespace-nowrap">
                 {duplicatedTools.map((tool, idx) => (
                   <div
                     key={idx}
