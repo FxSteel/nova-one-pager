@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    @apply bg-white text-gray-900;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+
+  * {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-gradient {
+    @apply bg-gradient-to-r from-purple-600 via-purple-500 to-purple-300 text-white font-semibold px-6 py-3 rounded-2xl hover:shadow-lg transition-shadow duration-300;
+  }
+
+  .btn-outline {
+    @apply border-2 border-gray-900 text-gray-900 font-semibold px-6 py-3 rounded-2xl hover:bg-gray-50 transition-colors duration-300;
+  }
+}
+
