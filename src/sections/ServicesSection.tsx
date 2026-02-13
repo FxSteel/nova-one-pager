@@ -7,6 +7,7 @@ import {
   Eye,
   TrendingUp,
 } from 'lucide-react';
+import { ToolStackMarquee } from '../components/ToolStackMarquee';
 
 interface ServiceCard {
   icon: React.ReactNode;
@@ -82,6 +83,8 @@ export function ServicesSection() {
             </div>
           ))}
         </div>
+
+        <ToolStackMarquee />
       </div>
     </section>
   );
