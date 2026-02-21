@@ -34,7 +34,7 @@ export function ToolStackMarquee() {
   const duplicatedTools = [...TOOLS, ...TOOLS];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-b border-zinc-200 dark:border-zinc-800 mt-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white mt-8">
       <div className="max-w-6xl mx-auto">
         {/* Título y descripción */}
         <div className="mb-16 text-center">
