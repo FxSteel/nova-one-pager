@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface Tool {
   name: string;
@@ -6,18 +7,27 @@ interface Tool {
 }
 
 const TOOLS: Tool[] = [
-  { name: 'n8n', logo: '/logos/n8n.png' },
-  { name: 'GHL', logo: '/logos/ghl.png' },
-  { name: 'ClickUp', logo: '/logos/clickup.png' },
-  { name: 'Supabase', logo: '/logos/supabase.png' },
-  { name: 'Stripe', logo: '/logos/stripe.png' },
-  { name: 'Vercel', logo: '/logos/vercel.png' },
-  { name: 'Notion', logo: '/logos/notion.png' },
-  { name: 'Jira', logo: '/logos/jira.png' },
+  { name: 'n8n', logo: 'https://cdn.simpleicons.org/n8n/1a1a1a' },
+  { name: 'Make', logo: 'https://cdn.simpleicons.org/make/6d00cc' },
+  { name: 'Zapier', logo: 'https://cdn.simpleicons.org/zapier/ff4a00' },
+  { name: 'Airtable', logo: 'https://cdn.simpleicons.org/airtable/18bfff' },
+  { name: 'Supabase', logo: 'https://cdn.simpleicons.org/supabase/3ecf8e' },
+  { name: 'Stripe', logo: 'https://cdn.simpleicons.org/stripe/635bff' },
+  { name: 'Vercel', logo: 'https://cdn.simpleicons.org/vercel/1a1a1a' },
+  { name: 'Notion', logo: 'https://cdn.simpleicons.org/notion/1a1a1a' },
+  { name: 'Jira', logo: 'https://cdn.simpleicons.org/jira/0052cc' },
+  { name: 'Trello', logo: 'https://cdn.simpleicons.org/trello/0052cc' },
+  { name: 'HubSpot', logo: 'https://cdn.simpleicons.org/hubspot/ff7a59' },
+  { name: 'Google Sheets', logo: 'https://cdn.simpleicons.org/googlesheets/34a853' },
+  { name: 'PostgreSQL', logo: 'https://cdn.simpleicons.org/postgresql/4169e1' },
+  { name: 'GitHub', logo: 'https://cdn.simpleicons.org/github/1a1a1a' },
+  { name: 'ClickUp', logo: 'https://cdn.simpleicons.org/clickup/7b68ee' },
+  { name: 'WhatsApp', logo: 'https://cdn.simpleicons.org/whatsapp/25d366' },
 ];
 
 export function ToolStackMarquee() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const { ref, isVisible } = useScrollAnimation();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -36,73 +46,81 @@ export function ToolStackMarquee() {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white mt-8">
       <div className="max-w-6xl mx-auto">
-        {/* Título y descripción */}
-        <div className="mb-16 text-center">
+        <div
+          ref={ref}
+          className={`mb-16 text-center transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Herramientas que integramos
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            En NOVA integramos herramientas líderes de automatización, CRM y gestión
+            Integramos herramientas lideres de automatizacion, CRM, AI y desarrollo
             para construir soluciones robustas y escalables.
           </p>
         </div>
 
-        {/* Marquee / Static Grid */}
         {prefersReducedMotion ? (
-          // Static grid para usuarios con reduce-motion activo
           <div className="overflow-x-auto mb-8">
-            <div className="flex gap-10 min-w-max px-4 md:px-0 justify-center">
+            <div className="flex flex-wrap gap-10 px-4 md:px-0 justify-center">
               {TOOLS.map((tool, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center h-[28px] flex-shrink-0"
+                  className="flex flex-col items-center justify-center gap-2 flex-shrink-0"
                 >
                   <img
                     src={tool.logo}
                     alt={tool.name}
-                    className="h-[28px] w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+                    className="h-[36px] w-[36px] opacity-60 hover:opacity-100 transition-opacity duration-300"
                     loading="lazy"
                   />
+                  <span className="text-xs text-gray-500">{tool.name}</span>
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          // Marquee infinito con animacion CSS
-          <div className="mb-8 overflow-hidden relative" aria-hidden="true">
+          <div
+            className={`mb-8 overflow-hidden relative transition-all duration-700 ${
+              isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
+            aria-hidden="true"
+          >
             <style>{`
               @keyframes marquee {
-                0% {
-                  transform: translateX(0);
-                }
-                100% {
-                  transform: translateX(-50%);
-                }
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
               }
 
               .marquee-track {
-                animation: marquee 15s linear infinite;
+                animation: marquee 25s linear infinite;
                 width: max-content;
               }
 
+              .marquee-track:hover {
+                animation-play-state: paused;
+              }
+
               .marquee-container {
-                mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
               }
             `}</style>
-            <div className="marquee-container overflow-hidden max-w-md md:max-w-2xl mx-auto">
-              <div className="marquee-track flex gap-10 whitespace-nowrap">
+            <div className="marquee-container overflow-hidden max-w-xl md:max-w-4xl mx-auto">
+              <div className="marquee-track flex gap-14 whitespace-nowrap">
                 {duplicatedTools.map((tool, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-center h-[28px] flex-shrink-0"
+                    className="flex flex-col items-center justify-center gap-2 flex-shrink-0"
                   >
                     <img
                       src={tool.logo}
                       alt={tool.name}
-                      className="h-[28px] w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
-                    loading="lazy"
+                      className="h-[36px] w-[36px] opacity-50 hover:opacity-100 transition-opacity duration-300"
+                      loading="lazy"
                     />
+                    <span className="text-[11px] text-gray-400 font-medium">{tool.name}</span>
                   </div>
                 ))}
               </div>
@@ -110,10 +128,9 @@ export function ToolStackMarquee() {
           </div>
         )}
 
-        {/* Disclaimer Legal */}
         <div className="text-center mt-6">
           <p className="text-xs text-zinc-500 max-w-4xl mx-auto leading-relaxed">
-            NOVA es una empresa independiente y no está afiliada oficialmente ni
+            NOVA es una empresa independiente y no esta afiliada oficialmente ni
             representa a estas marcas. Todos los nombres y logotipos pertenecen a sus
             respectivos propietarios.
           </p>

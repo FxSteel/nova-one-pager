@@ -6,14 +6,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <img
-              src="/nova-logo.svg"
-              alt="NOVA"
-              className="h-10 w-auto mb-3"
-            />
-            <p className="text-gray-600 text-sm">
-              Automatización real para empresas que quieren operar sin fricción.
-            </p>
+            <div className="flex items-start gap-3">
+              <img
+                src="/logo-preview.png"
+                alt="NOVA"
+                className="h-8 w-8 rounded-lg flex-shrink-0 mt-0.5"
+              />
+              <p className="text-gray-600 text-sm">
+                Automatizacion real para empresas que quieren operar sin friccion.
+              </p>
+            </div>
           </div>
 
           {/* Links */}

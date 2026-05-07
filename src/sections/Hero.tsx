@@ -9,9 +9,9 @@ export function Hero() {
 
   const benefits = [
     { icon: AlertCircle, label: 'Menos friccion' },
-    { icon: AlertCircle, label: 'Menos errores' },
     { icon: Gauge, label: 'Mas velocidad' },
-    { icon: Zap, label: 'Trazabilidad' },
+    { icon: AlertCircle, label: 'Menos errores' },
+    { icon: Zap, label: 'Mas trazabilidad' },
   ];
 
   return (

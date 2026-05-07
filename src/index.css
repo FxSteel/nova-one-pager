@@ -29,11 +29,11 @@
 
 @layer components {
   .btn-gradient {
-    @apply bg-gradient-to-r from-purple-600 via-purple-500 to-purple-300 text-white font-semibold px-6 py-3 rounded-2xl hover:shadow-lg transition-shadow duration-300;
+    @apply bg-gradient-to-r from-purple-600 via-purple-500 to-purple-300 text-white font-semibold px-6 py-3 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-300/40 hover:-translate-y-0.5 hover:brightness-110;
   }
 
   .btn-outline {
-    @apply border-2 border-gray-900 text-gray-900 font-semibold px-6 py-3 rounded-2xl hover:bg-gray-50 transition-colors duration-300;
+    @apply border-2 border-gray-900 text-gray-900 font-semibold px-6 py-3 rounded-2xl transition-all duration-300 hover:bg-gray-900 hover:text-white hover:-translate-y-0.5 hover:shadow-lg;
   }
 }
 
