@@ -5,6 +5,7 @@ import {
   RotateCcw,
   LogOut,
 } from 'lucide-react';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface FeatureCard {
   icon: React.ReactNode;
@@ -13,30 +14,32 @@ interface FeatureCard {
 }
 
 export function HowWeWorkSection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const features: FeatureCard[] = [
     {
       icon: <CheckCircle className="w-8 h-8 text-purple-600" />,
-      title: 'La AI propone, pero reglas determinísticas validan',
+      title: 'La AI propone, pero reglas deterministicas validan',
       description:
-        'Nuestros sistemas inteligentes sugieren acciones, pero siempre están sujetos a reglas de negocio claras y predefinidas.',
+        'Nuestros sistemas inteligentes sugieren acciones, pero siempre estan sujetos a reglas de negocio claras y predefinidas.',
     },
     {
       icon: <Lock className="w-8 h-8 text-purple-600" />,
       title: 'Aprobaciones humanas configurables',
       description:
-        'Defines quién necesita aprobar cada tipo de decisión. Control total en tus manos.',
+        'Defines quien necesita aprobar cada tipo de decision. Control total en tus manos.',
     },
     {
       icon: <LogOut className="w-8 h-8 text-purple-600" />,
       title: 'Trazabilidad y logs',
       description:
-        'Cada acción queda registrada. Sabes exactamente qué hizo el sistema, cuándo y por qué.',
+        'Cada accion queda registrada. Sabes exactamente que hizo el sistema, cuando y por que.',
     },
     {
       icon: <RotateCcw className="w-8 h-8 text-purple-600" />,
       title: 'Fallback y reintentos',
       description:
-        'Si algo falla, el sistema tiene protocolos para recuperarse automáticamente o alertarte.',
+        'Si algo falla, el sistema tiene protocolos para recuperarse automaticamente o alertarte.',
     },
   ];
 
@@ -46,12 +49,17 @@ export function HowWeWorkSection() {
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-200"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
+        <div
+          ref={ref}
+          className={`mb-16 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Cómo trabajamos
+            Como trabajamos
           </h2>
           <p className="text-lg text-gray-600">
-            AI con límites: control total sin sacrificar la eficiencia.
+            AI con limites: control total sin sacrificar la eficiencia.
           </p>
         </div>
 
@@ -59,7 +67,10 @@ export function HowWeWorkSection() {
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-md transition-shadow"
+              className={`bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-md transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: isVisible ? `${idx * 150}ms` : '0ms' }}
             >
               <div className="mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">

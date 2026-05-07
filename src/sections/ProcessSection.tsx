@@ -1,4 +1,4 @@
-
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 interface ProcessStep {
   number: number;
@@ -7,30 +7,32 @@ interface ProcessStep {
 }
 
 export function ProcessSection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   const steps: ProcessStep[] = [
     {
       number: 1,
-      title: 'Diagnóstico',
+      title: 'Diagnostico',
       description:
-        'Analizamos tu operación actual, identificamos fricciones, oportunidades de automatización y requisitos clave.',
+        'Analizamos tu operacion actual, identificamos fricciones, oportunidades de automatizacion y requisitos clave.',
     },
     {
       number: 2,
-      title: 'Diseño',
+      title: 'Diseno',
       description:
-        'Diseñamos la solución considerando tus procesos, herramientas existentes y objetivos de negocio.',
+        'Disenamos la solucion considerando tus procesos, herramientas existentes y objetivos de negocio.',
     },
     {
       number: 3,
-      title: 'Implementación',
+      title: 'Implementacion',
       description:
-        'Construimos e integramos el sistema. Testing exhaustivo y capacitación de tu equipo.',
+        'Construimos e integramos el sistema. Testing exhaustivo y capacitacion de tu equipo.',
     },
     {
       number: 4,
       title: 'Monitoreo',
       description:
-        'Monitoreamos continuamente, optimizamos según datos reales y ajustamos según necesites.',
+        'Monitoreamos continuamente, optimizamos segun datos reales y ajustamos segun necesites.',
     },
   ];
 
@@ -40,18 +42,29 @@ export function ProcessSection() {
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-200"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
+        <div
+          ref={ref}
+          className={`mb-16 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Nuestro proceso
           </h2>
           <p className="text-lg text-gray-600">
-            Cuatro fases para transformar tu operación.
+            Cuatro fases para transformar tu operacion.
           </p>
         </div>
 
         <div className="space-y-8">
           {steps.map((step, idx) => (
-            <div key={idx} className="flex gap-8">
+            <div
+              key={idx}
+              className={`flex gap-8 transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+              }`}
+              style={{ transitionDelay: isVisible ? `${idx * 150}ms` : '0ms' }}
+            >
               {/* Step Number */}
               <div className="flex-shrink-0">
                 <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 via-purple-500 to-purple-300 text-white font-bold text-xl">

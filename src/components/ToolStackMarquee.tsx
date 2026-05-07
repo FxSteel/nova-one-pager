@@ -61,14 +61,15 @@ export function ToolStackMarquee() {
                     src={tool.logo}
                     alt={tool.name}
                     className="h-[28px] w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+                    loading="lazy"
                   />
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          // Marquee infinito con animación CSS
-          <div className="mb-8 overflow-hidden relative">
+          // Marquee infinito con animacion CSS
+          <div className="mb-8 overflow-hidden relative" aria-hidden="true">
             <style>{`
               @keyframes marquee {
                 0% {
@@ -100,6 +101,7 @@ export function ToolStackMarquee() {
                       src={tool.logo}
                       alt={tool.name}
                       className="h-[28px] w-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+                    loading="lazy"
                     />
                   </div>
                 ))}

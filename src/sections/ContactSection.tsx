@@ -1,7 +1,10 @@
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export function ContactSection() {
+  const { ref, isVisible } = useScrollAnimation();
+
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({"namespace":"30min"});
@@ -12,17 +15,22 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
+        <div
+          ref={ref}
+          className={`text-center mb-12 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Agenda una conversación
+            Agenda una conversacion
           </h2>
           <p className="text-lg text-gray-600">
-            Elige un horario que te convenga y hablemos sobre cómo automatizar tu operación.
+            Elige un horario que te convenga y hablemos sobre como automatizar tu operacion.
           </p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <Cal 
+          <Cal
             namespace="30min"
             calLink="fernando-matus-nova/30min"
             style={{width:"100%",height:"100%",overflow:"scroll"}}

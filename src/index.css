@@ -16,6 +16,17 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer components {
   .btn-gradient {
     @apply bg-gradient-to-r from-purple-600 via-purple-500 to-purple-300 text-white font-semibold px-6 py-3 rounded-2xl hover:shadow-lg transition-shadow duration-300;
